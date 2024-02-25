@@ -60,7 +60,7 @@ session_start();
 
 	<?php
 
-	include 'student_css.php';
+	include 'student_sidebar.php';
 	
    ?>
 
@@ -68,11 +68,7 @@ session_start();
 </head>
 <body>
 
-	<?php
-
-	include 'student_sidebar.php';
-
-	?>
+ 
 
 	<div class="content">
 
@@ -91,65 +87,54 @@ session_start();
 		?>
 		<br><br>
 		<table border="1px">
-			<tr>
-				<th class="table_th">UserName</th>
-				<th class="table_th">Email</th>
-<th class="table_th">Week</th>
-<th class="table_th">Monday</th>
-<th class="table_th">Tuesday</th>
-<th class="table_th">Wednesday</th>
-<th class="table_th">Thursday</th>
-<th class="table_th">Friday</th>
-					
-					
-			</tr>
-			<?php
-			while($info=$result->fetch_assoc())
-			{
-			?>
-			<tr>
-				<td class="table_td">
-					<?php echo "{$info['username']}"; ?>
-				</td>
-				<td class="table_td">
-					<?php echo "{$info['email']}"; ?>
-				</td>
-					
-					<td class="table_td">
-					<?php echo "{$info['week']}"; ?>
-				</td>
-</td>
-					
-					<td class="table_td">
-					<?php echo "{$info['monday']}"; ?>
-				</td>
-</td>
-					
-					<td class="table_td">
-					<?php echo "{$info['tuesday']}"; ?>
-				</td>
-</td>
-					
-					<td class="table_td">
-					<?php echo "{$info['wednesday']}"; ?>
-				</td>
-</td>
-					
-					<td class="table_td">
-					<?php echo "{$info['thursday']}"; ?>
-				</td>
-</td>
-					
-					<td class="table_td">
-					<?php echo "{$info['friday']}"; ?>
-				</td>
-</tr>
-			<?php 
+    <tr>
+        <th class="table_th">UserName</th>
+        <th class="table_th">Email</th>
+        <th class="table_th">Week</th>
+        <th class="table_th" colspan="2">Monday</th>
+        <th class="table_th" colspan="2">Tuesday</th>
+        <th class="table_th" colspan="2">Wednesday</th>
+        <th class="table_th" colspan="2">Thursday</th>
+        <th class="table_th" colspan="2">Friday</th>
+    </tr>
+    <tr>
+        <td class="table_td"></td>
+        <td class="table_td"></td>
+        <td class="table_td"></td>
+        <td class="table_td">From</td>
+        <td class="table_td">To</td>
+        <td class="table_td">From</td>
+        <td class="table_td">To</td>
+        <td class="table_td">From</td>
+        <td class="table_td">To</td>
+        <td class="table_td">From</td>
+        <td class="table_td">To</td>
+        <td class="table_td">From</td>
+        <td class="table_td">To</td>
+    </tr>
+    <?php
+    while($info = $result->fetch_assoc()) {
+    ?>
+        <tr>
+            <td class="table_td"><?php echo "{$info['username']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['email']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['week']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['monday_from']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['monday_to']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['tuesday_from']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['tuesday_to']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['wednesday_from']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['wednesday_to']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['thursday_from']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['thursday_to']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['friday_from']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['friday_to']}"; ?></td>
+        </tr>
+    <?php 
+    }
+    ?>
+</table>
 
-		}
-
-			?>
-		</table>
 
 </center>
 		

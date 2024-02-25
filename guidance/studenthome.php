@@ -14,14 +14,7 @@ session_start();
   	
   }
 
-
-
-
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -29,32 +22,36 @@ session_start();
 	<meta charset="utf-8">
 	
 	<title>Admin Dashboard</title>
+</head>
 
-	<?php
+<body>
+ 
+<?php
 
-	include 'student_css.php';
-	
-   ?>
+include 'student_sidebar.php';
 
-	
+?>
+
+	 
+
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>Your Website</title>
 </head>
 <body>
 
-	<?php
 
-	include 'student_sidebar.php';
+<!-- Your page content goes here -->
 
-	?>
-
-	<div class="content">
-		
-		<h1>Student Dashboard</h1>
-		
-
-		
-
-	</div>
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

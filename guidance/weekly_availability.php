@@ -30,7 +30,7 @@
         .div_deg {
             background-color: #3498db;
             color: #fff;
-            width: 400px;
+            width: 700px;
             padding: 30px;
             margin: 0 auto;
             border-radius: 8px;
@@ -38,15 +38,21 @@
         }
 
         form {
-            text-align: left;
+            text-align: center;
         }
 
         label {
             display: inline-block;
-            text-align: right;
-            width: 120px;
+            text-align: center;
+            width: 80px;
             padding: 10px;
             color: #fff;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        label:hover {
+            background-color: #2ecc71;
+            transform: scale(1.1);
         }
 
         input[type="text"],
@@ -58,10 +64,11 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             box-sizing: border-box;
+            transition: box-shadow 0.3s;
         }
 
-        input[type="time"] {
-            width: 80px; /* Adjusted size for time inputs */
+        input[type="time"]:hover {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
         input[type="submit"] {
@@ -72,11 +79,13 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s;
         }
 
         input[type="submit"]:hover {
             background-color: #27ae60;
         }
+		
 		.form-submit {
             text-align: center;
         }
@@ -84,38 +93,43 @@
 </head>
 <body>
 
-    <?php include 'admin_sidebar.php'; ?>
+ 
 
     <div class="content">
         <center>
             <h1>Date and Time Availability</h1>
             <div class="div_deg">
-                <form action="process_availability.php" method="POST">
-                    <div>
-                        <label>User</label>
-                        <input type="text" name="username" value="<?php echo "{$info['username']}"; ?>">
-                    </div>
-                    <div>
-                        <label>Week</label>
-                        <input type="number" name="week" placeholder="Current school week/13">
-                    </div>
+              
 
-                    <!-- Day-wise availability input -->
-                    <?php
-					$days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-					foreach ($days as $day) {
-						echo '<div>';
-						echo "<label>{$day}</label>";
-						echo '<input type="time" name="' . $day . '_from" placeholder="From">';
-						echo '<input type="time" name="' . $day . '_to" placeholder="To">';
-						echo '</div>';
-					}
-					?>
+                <form action="process_availability.php"  method="POST">
 
-                    <div>
-                        <input type="submit" class="btn btn-primary form-submit" name="weekly_availability" value="Submit">
-                    </div>
-                </form>
+    <label for="Monday_timeIn">Monday</label>
+    <input type="time" id="Monday_timeIn" name="Monday_timeIn" required>
+    <label for="Monday_timeOut">to</label>
+    <input type="time" id="Monday_timeOut" name="Monday_timeOut" required><br>
+
+    <label for="Tuesday_timeIn">Tuesday </label>
+    <input type="time" id="Tuesday_timeIn" name="Tuesday_timeIn" required>
+    <label for="Tuesday_timeOut">to</label>
+    <input type="time" id="Tuesday_timeOut" name="Tuesday_timeOut" required><br>
+
+    <label for="Wednesday_timeIn">Wednesday </label>
+    <input type="time" id="Wednesday_timeIn" name="Wednesday_timeIn" required>
+    <label for="Wednesday_timeOut">to</label>
+    <input type="time" id="Wednesday_timeOut" name="Wednesday_timeOut" required><br>
+
+    <label for="Thursday_timeIn">Thursday </label>
+    <input type="time" id="Thursday_timeIn" name="Thursday_timeIn" required>
+    <label for="Thursday_timeOut">to</label>
+    <input type="time" id="Thursday_timeOut" name="Thursday_timeOut" required><br>
+
+    <label for="Friday_timeIn">Friday </label>
+    <input type="time" id="Friday_timeIn" name="Friday_timeIn" required>
+    <label for="Friday_timeOut">to</label>
+    <input type="time" id="Friday_timeOut" name="Friday_timeOut" required><br>
+
+    <input type="submit" value="Submit">
+</form>
             </div>
         </center>
     </div>

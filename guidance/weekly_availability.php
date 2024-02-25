@@ -1,173 +1,124 @@
-<?php
-
-session_start();
-
-  if (!isset($_SESSION['username']))
-   {
-  	header("location:login.php");
-  }
-
-  elseif($_SESSION['usertype']=='staff')
-  {
-
-  	header("location:login.php");
-  	
-  }
-
-  $host="localhost";
-  $user="root";
-  $password="";
-  $db="guidance";
-
-  $data=mysqli_connect($host,$user,$password,$db);
-
-  if(isset($_POST['weekly_availability']))
-  {
- $username=$_POST['username']; 	
-$week=$_POST['week'];
-$monday=$_POST['monday'];
-$tuesday=$_POST['tuesday'];
-$wednesday=$_POST['wednesday'];
-$thursday=$_POST['thursday'];
-$friday=$_POST['friday'];
-  	
-
-  	$usertype="admin";
-
-
-  	$check="SELECT * FROM user WHERE username='$username' ";
-
-  	$check_user=mysqli_query($data,$check);
-
-  	$row_count=mysqli_num_rows($check_user);
-
-  	if($row_count==1)
-  	{
-  		echo "<script type='text/javascript'> 
-  		alert('Username already Exist. Try Another One');
-
-  		 </script>";
-		
-  	}
-  	    else
-  	{
-
-  	$sql="INSERT INTO user(username,week,monday,tuesday,wednesday,thursday,friday) VALUES ('$username','$week','$monday','$tuesday','$wednesday','$thursday','$friday')";
-
-  	$result=mysqli_query($data,$sql);
-
-  	if($result)
-  	{
-  		echo "<script type='text/javascript'> 
-  		alert('Data Upload Succees');
-
-
-
-  		 </script>";
-  	}
-
-  	else
-  	{
-  		echo "Upload Failed";
-  	}
-  }
-
-  }
-
-?>
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	
-	<title>Add your availability for the week</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Your Availability for the Week</title>
 
-	<style type="text/css">
-		label
-		{
-			display: inline-block;
-			text-align: right;
-			width: 100px;
-			padding-top: 10px;
-			padding-bottom: 10px;
+    <style type="text/css">
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #3498db;
+            margin: 0;
+            padding: 0;
+        }
 
-		}
+        .content {
+            margin: 50px auto;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
-		.div_deg
-		{
-			background-color: skyblue;
-			width: 400px;
-			padding-top: 70px;
-			padding-bottom: 70px;
+        h1 {
+            color: #3498db;
+            text-align: center;
+        }
 
-		}
+        .div_deg {
+            background-color: #3498db;
+            color: #fff;
+            width: 400px;
+            padding: 30px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
 
-	</style>
-	<?php
+        form {
+            text-align: left;
+        }
 
-	include 'admin_css.php';
-	
-   ?>
+        label {
+            display: inline-block;
+            text-align: right;
+            width: 120px;
+            padding: 10px;
+            color: #fff;
+        }
 
-	
+        input[type="text"],
+        input[type="number"],
+        input[type="time"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 150px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="time"] {
+            width: 80px; /* Adjusted size for time inputs */
+        }
+
+        input[type="submit"] {
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+		.form-submit {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-	<?php
+    <?php include 'admin_sidebar.php'; ?>
 
-	include 'admin_sidebar.php';
+    <div class="content">
+        <center>
+            <h1>Date and Time Availability</h1>
+            <div class="div_deg">
+                <form action="process_availability.php" method="POST">
+                    <div>
+                        <label>User</label>
+                        <input type="text" name="username" value="<?php echo "{$info['username']}"; ?>">
+                    </div>
+                    <div>
+                        <label>Week</label>
+                        <input type="number" name="week" placeholder="Current school week/13">
+                    </div>
 
-	?>
+                    <!-- Day-wise availability input -->
+                    <?php
+					$days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+					foreach ($days as $day) {
+						echo '<div>';
+						echo "<label>{$day}</label>";
+						echo '<input type="time" name="' . $day . '_from" placeholder="From">';
+						echo '<input type="time" name="' . $day . '_to" placeholder="To">';
+						echo '</div>';
+					}
+					?>
 
-	<div class="content">
-
-		<center>
-		<h1>Date and time available</h1>
-
-		<div class="div_deg">
-			<form action="" method="POST">
-
-<div>
-					<label>user</label>
-					<input type="text" name="username" value="<?php echo "{$info['username']}"; ?>">
-				</div>
-
-<div>
-					<label>Week</label>
-					<input type="number" name="week" placeholder="current school week/13">
-				</div>
-				<div>
-					<label>Monday</label>
-					<input type="time" name="monday" placeholder="Time available">
-				</div>
-				<div>
-					<label>Tuesday</label>
-					<input type="time" name="tuesday" placeholder="Time available">
-				</div>
-				<div>
-					<label>Wednesday</label>
-					<input type="time" name="wednesday"placeholder="Time available">
-				</div>
-				<div>
-					<label>Thursday</label>
-					<input type="time" name="thursday"placeholder="Time available">
-				</div>
-				<div>
-					<label>Friday</label>
-					<input type="time" name="friday"placeholder="Time available">
-				</div>
-				<div>
-					<input type="submit" class="btn btn-primary" name="weekly_availability" value="Submit">
-				</div>
-			</form>
-		</div>
-		
-
-		</center>
-	</div>
-
+                    <div>
+                        <input type="submit" class="btn btn-primary form-submit" name="weekly_availability" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </center>
+    </div>
 
 </body>
 </html>

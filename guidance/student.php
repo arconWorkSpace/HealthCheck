@@ -36,6 +36,8 @@ if ($result && $info = mysqli_fetch_assoc($result)) {
             header('location: student_profile.php');
             exit();
         }
+     
+
     }
 
     // Check if the user is an 

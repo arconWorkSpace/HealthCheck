@@ -32,11 +32,18 @@
      		<form action="login_check.php" method="POST" class="login_form">
      		<div>
      			<label class="label_deg">Username</label>
-     			<input type="text" name="username">
+     			<input type="text" name="username" id="username">
      		</div>
      		<div>
-     			<label class="label_deg">Password</label>
-     			<input type="Password" name="password">
+     			<label class="label_deg" >Password</label>
+     			<input type="Password" name="password" id="password">
+     		</div>
+			 <div>
+			 <label class="loginas">Login As</label>
+			 <select name="" id="logintype">
+              <option value="Doctor">Doctor</option>
+              <option value="Student">Student</option>
+            </select>
      		</div>
      		<div>  		
      			<input class="btn btn-primary" type="submit" name="submit" value="Login">

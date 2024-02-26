@@ -62,6 +62,11 @@ if ($result && $info = mysqli_fetch_assoc($result)) {
 
 <!DOCTYPE html>
 <html>
+<?php
+
+include 'student_sidebar.php';
+
+?>
 
 <head>
     <meta charset="utf-8">
@@ -121,11 +126,16 @@ if ($result && $info = mysqli_fetch_assoc($result)) {
 </head>
 
 <body>
-<?php
-
-include 'student_sidebar.php';
-
-?>
+ 
+<script>
+    function showTimings() {
+            var selectedDay = document.getElementById("week").value;
+         
+            $value = selectedDay;
+            console.log(selectedDay);
+            return selectedDay;
+        }
+</script>
 
     <div class="content">
         <center>
@@ -142,10 +152,10 @@ include 'student_sidebar.php';
                     <select name="counselor" class="form-control">
                     <?php
                     // Fetch and display the list of admin users
-                    $adminUsersQuery = "SELECT username FROM user WHERE usertype='admin'";
+                    $adminUsersQuery = "SELECT * FROM availability ";
                     $adminUsersResult = mysqli_query($data, $adminUsersQuery);
                     while ($adminUser = mysqli_fetch_assoc($adminUsersResult)) {
-                        echo "<option value='" . $adminUser['username'] . "'>" . $adminUser['username'] . "</option>";
+                        echo "<option value='" . $adminUser['Name'] . "'>" . $adminUser['Name'] . "</option>";
                     }
                     ?>
                     </select>
@@ -153,7 +163,7 @@ include 'student_sidebar.php';
 
                 <div>
                     <label>Select Day:</label>
-                    <select name="week" class="form-control">
+                    <select id="week" name="week" class="form-control" onchange="showTimings()">
                     <option value="monday">Monday</option>
                     <option value="tuesday">Tuesday</option>
                     <option value="wednesday">Wednesday</option>
@@ -162,10 +172,9 @@ include 'student_sidebar.php';
                     </select>
                 </div>
 
-                <div id="setDoctorTime">
-                    <label for="timing">Timing</label>
-                    <input type="text" name="timing" class="form-control">
-                </div>
+                
+
+                
 
                 <div>
     <label for="checkup">CheckUp For:</label>
@@ -186,5 +195,6 @@ include 'student_sidebar.php';
         </center>
     </div>
 </body>
+
 
 </html>

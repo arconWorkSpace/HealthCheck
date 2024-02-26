@@ -14,16 +14,34 @@
         $email = $_POST["email"];
         $counselor = $_POST["counselor"];
         $week = $_POST["week"];
-        $timing = $_POST["timing"]; // Make sure to add 'name' attribute to your timing input field
+        $week = ucfirst($_POST["week"]);
+        
+
         $checkup_for = $_POST["checkup"]; // Make sure to add 'name' attribute to your checkup input field
+        $timing_query = "SELECT * FROM availability WHERE Name = '$counselor'";
+        $timing_result = mysqli_query($data, $timing_query);
+        $weekWithTimeIn = $week . "_timeIn";
 
-        // Insert data into the database
-        $insertQuery = "INSERT INTO appointment_details (email, counselor, week, timing, checkup_for) VALUES ('$email', '$counselor', '$week', '$timing', '$checkup_for')";
-
-        if (mysqli_query($data, $insertQuery)) {
-            echo "Data inserted successfully!";
+        if ($timing_result) {
+            // Check if any rows were returned
+            if (mysqli_num_rows($timing_result) > 0) {
+                $row = mysqli_fetch_assoc($timing_result);
+                $timing = $row[$weekWithTimeIn];
+                
+                // Insert data into the database
+                $insertQuery = "INSERT INTO appointment_details (email, counselor, week, timing, checkup_for) VALUES ('$email', '$counselor', '$week', '$timing', '$checkup_for')";
+    
+                if (mysqli_query($data, $insertQuery)) {
+                    echo "Data inserted successfully!";
+                } else {
+                    echo "Error: " . mysqli_error($data);
+                }
+            } else {
+                echo "No available timing found for the selected counselor and week.";
+            }
         } else {
             echo "Error: " . mysqli_error($data);
         }
     }
+    
 ?>

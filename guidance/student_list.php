@@ -5,6 +5,7 @@ session_start();
   if (!isset($_SESSION['username']))
    {
   	header("location:login.php");
+    exit();
   }
 
 
@@ -22,7 +23,7 @@ session_start();
 
   $data=mysqli_connect($host,$user,$password,$db);
 
-  $sql="SELECT * FROM user WHERE usertype= 'admin' ";
+  $sql="SELECT * FROM availability";
 
   $result=mysqli_query($data,$sql);
 
@@ -74,7 +75,7 @@ session_start();
 
 		<center>
 		
-		<h1>Available timings</h1>
+		<h1>Counselor Available Time</h1>
 		<?php
 
 			 	if($_SESSION['message'])
@@ -86,11 +87,12 @@ session_start();
 
 		?>
 		<br><br>
+         
 		<table border="1px">
     <tr>
-        <th class="table_th">UserName</th>
+        <th class="table_th">Name</th>
         <th class="table_th">Email</th>
-        <th class="table_th">Week</th>
+        
         <th class="table_th" colspan="2">Monday</th>
         <th class="table_th" colspan="2">Tuesday</th>
         <th class="table_th" colspan="2">Wednesday</th>
@@ -100,7 +102,7 @@ session_start();
     <tr>
         <td class="table_td"></td>
         <td class="table_td"></td>
-        <td class="table_td"></td>
+     
         <td class="table_td">From</td>
         <td class="table_td">To</td>
         <td class="table_td">From</td>
@@ -116,19 +118,19 @@ session_start();
     while($info = $result->fetch_assoc()) {
     ?>
         <tr>
-            <td class="table_td"><?php echo "{$info['username']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['email']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['week']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['monday_from']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['monday_to']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['tuesday_from']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['tuesday_to']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['wednesday_from']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['wednesday_to']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['thursday_from']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['thursday_to']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['friday_from']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['friday_to']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Name']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Email']}"; ?></td>
+            
+            <td class="table_td"><?php echo "{$info['Monday_timeIn']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Monday_timeOut']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Tuesday_timeIn']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Tuesday_timeOut']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Wednesday_timeIn']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Wednesday_timeOut']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Thursday_timeIn']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Thursday_timeOut']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Friday_timeIn']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['Friday_timeOut']}"; ?></td>
         </tr>
     <?php 
     }

@@ -29,31 +29,14 @@ session_start();
 	<meta charset="utf-8">
 	
 	<title>Admin Dashboard</title>
-
 	<?php
 
-	include 'admin_css.php';
-	
-   ?>
+include 'admin_sidebar.php';
 
-	
+?>
 </head>
 <body>
 
-	<?php
-
-	include 'admin_sidebar.php';
-
-	?>
-
-	<div class="content">
-		
-		<h1>Admin Dashboard</h1>
-		
-
-		
-
-	</div>
 
 
 </body>

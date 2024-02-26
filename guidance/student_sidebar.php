@@ -24,16 +24,18 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="studenthome.php">Home</a></li>
-        <li><a href="student_list.php">Doctor Timings</a></li>
-        <li><a href="student_profile.php">Book Appointment</a></li>
+        <li <?php echo (basename($_SERVER['PHP_SELF']) == 'studenthome.php') ? 'class="active"' : ''; ?>><a href="studenthome.php" data-target="#home">Home</a></li>
+        <li <?php echo (basename($_SERVER['PHP_SELF']) == 'student_list.php') ? 'class="active"' : ''; ?>><a href="student_list.php" data-target="#doctor-timings">Doctor Timings</a></li>
+        <li <?php echo (basename($_SERVER['PHP_SELF']) == 'student_profile.php') ? 'class="active"' : ''; ?>><a href="student_profile.php" data-target="#book-appointment">Book Appointment</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<!-- Your page content goes here -->
 
+<!-- Your page content goes here -->
+ 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>

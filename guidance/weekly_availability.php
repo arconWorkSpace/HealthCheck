@@ -1,15 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Your Availability for the Week</title>
-     
     <style type="text/css">
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #3498db;
+            background-color:  ;
             margin: 0;
             padding: 0;
         }

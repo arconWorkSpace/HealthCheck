@@ -6,13 +6,19 @@ $password = "";
 $db = "guidance";
 session_start();
 $Name = $_SESSION["username"];
+ 
 $data = mysqli_connect($host, $user, $password, $db);
 
 // Check connection
 if (!$data) {
     die("Connection failed: " . mysqli_connect_error());
 }
+$query = "SELECT email FROM user WHERE username = '$Name'";
 
+// Perform the query
+$result = mysqli_query($data, $query);
+$row = mysqli_fetch_assoc($result);
+$Email = $row['email'];
 $success = isset($_POST['Monday_timeIn']) &&
 isset($_POST['Monday_timeOut']) &&
 isset($_POST['Tuesday_timeIn']) &&
@@ -41,22 +47,15 @@ if ($success ) {
     $fridayTimeIn = $_POST["Friday_timeIn"];
     $fridayTimeOut = $_POST["Friday_timeOut"];
   
-    // // Insert data into the database
-    // $sql = "INSERT INTO availability (Name,Email,Monday_timeIn, Monday_timeOut, Tuesday_timeIn, Tuesday_timeOut, Wednesday_timeIn, Wednesday_timeOut, Thursday_timeIn, Thursday_timeOut, Friday_timeIn, Friday_timeOut)
-    //         VALUES ('$Name','ance@gmail.coms','$mondayTimeIn', '$mondayTimeOut', '$tuesdayTimeIn', '$tuesdayTimeOut', '$wednesdayTimeIn', '$wednesdayTimeOut', '$thursdayTimeIn', '$thursdayTimeOut', '$fridayTimeIn', '$fridayTimeOut')";
-
-    // if (mysqli_query($data, $sql)) {
-    //     echo "Data submitted successfully!";
-    // } else {
-    //     echo "Error: " . $sql . "<br>" . mysqli_error($data);
-    // }
+    
 
     $checkQuery = "SELECT * FROM availability WHERE Name = '$Name'";
     $checkResult = mysqli_query($data, $checkQuery);
 
     if (mysqli_num_rows($checkResult) > 0) {
         // If the name exists, perform an UPDATE query
-        $updateQuery = "UPDATE availability SET 
+        $updateQuery = "UPDATE availability SET
+                        Email = '$Email', 
                         Monday_timeIn = '$mondayTimeIn', 
                         Monday_timeOut = '$mondayTimeOut', 
                         Tuesday_timeIn = '$tuesdayTimeIn', 
@@ -77,7 +76,7 @@ if ($success ) {
     } else {
         // If the name doesn't exist, perform an INSERT query
         $sql = "INSERT INTO availability (Name, Email, Monday_timeIn, Monday_timeOut, Tuesday_timeIn, Tuesday_timeOut, Wednesday_timeIn, Wednesday_timeOut, Thursday_timeIn, Thursday_timeOut, Friday_timeIn, Friday_timeOut)
-                VALUES ('$Name', 'ance@gmail.coms', '$mondayTimeIn', '$mondayTimeOut', '$tuesdayTimeIn', '$tuesdayTimeOut', '$wednesdayTimeIn', '$wednesdayTimeOut', '$thursdayTimeIn', '$thursdayTimeOut', '$fridayTimeIn', '$fridayTimeOut')";
+                VALUES ('$Name', '$Email', '$mondayTimeIn', '$mondayTimeOut', '$tuesdayTimeIn', '$tuesdayTimeOut', '$wednesdayTimeIn', '$wednesdayTimeOut', '$thursdayTimeIn', '$thursdayTimeOut', '$fridayTimeIn', '$fridayTimeOut')";
 
         if (mysqli_query($data, $sql)) {
             echo "New record inserted successfully!";

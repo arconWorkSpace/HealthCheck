@@ -1,4 +1,6 @@
+ 
 <?php
+include 'admin_sidebar.php';
 error_reporting(0);
 session_start();
 
@@ -30,25 +32,6 @@ session_start();
 
 ?>
 
-<style type="text/css">
-.table_th
-{
-	padding: 20px;
-	font-size: 20px;
-
-}
-
-.table_td
-{
-	padding: 20px;
-	background-color: skyblue;
-
-}
-
-</style>
-
-
-
 
 
 <!DOCTYPE html>
@@ -61,6 +44,10 @@ session_start();
  
 	
 </head>
+
+<script>
+    document.querySelector("body > a").style.pointerEvents = "none";
+</script>
 <style>
       body {
             font-family: Arial, sans-serif;
@@ -108,13 +95,6 @@ session_start();
         }
     </style>
 <body>
-
-<?php
-
-include 'admin_sidebar.php';
-
-?>
-
 	<div class="content">
 
 		<center>
@@ -136,6 +116,7 @@ include 'admin_sidebar.php';
 			<tr>
                 <th>Index</th>
                 <th>Email</th>
+                <th>Day</th>
                 <th>Timing</th>
                 <th>Checkup</th>
             </tr>
@@ -153,15 +134,15 @@ include 'admin_sidebar.php';
 				<td class="table_td">
 					<?php echo "{$info['email']}"; ?>
 				</td>
+                <td class="table_td">
+					<?php echo "{$info['week']}"; ?>
+				</td>
 				<td class="table_td">
 					<?php echo "{$info['timing']}"; ?>
 				</td>
 				<td class="table_td">
 					<?php echo "{$info['checkup_for']}"; ?>
-				</td>
-               
-			 
-					
+				</td>		
 			</tr>
 			
 			<?php 

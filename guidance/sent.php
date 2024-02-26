@@ -21,13 +21,15 @@
         $timing_query = "SELECT * FROM availability WHERE Name = '$counselor'";
         $timing_result = mysqli_query($data, $timing_query);
         $weekWithTimeIn = $week . "_timeIn";
+        $weekWithTimeIOut = $week . "_timeOut";
 
         if ($timing_result) {
             // Check if any rows were returned
             if (mysqli_num_rows($timing_result) > 0) {
                 $row = mysqli_fetch_assoc($timing_result);
-                $timing = $row[$weekWithTimeIn];
-                
+                $timing1 = $row[$weekWithTimeIn];
+                $timing2 = $row[$weekWithTimeIOut];
+                $timing = $timing1 ."-". $timing2;
                 // Insert data into the database
                 $insertQuery = "INSERT INTO appointment_details (email, counselor, week, timing, checkup_for) VALUES ('$email', '$counselor', '$week', '$timing', '$checkup_for')";
     

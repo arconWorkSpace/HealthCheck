@@ -1,3 +1,4 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +27,7 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="adminhome.php">Home</a></li>
         <li><a href="weekly_availability.php">Add weekly availability</a></li>
+        <!-- <li><a href="view_bookings.php">View bookings</a></li> -->
         <li><a href="view_bookings.php">View bookings</li>
       </ul>
     </div><!-- /.navbar-collapse -->

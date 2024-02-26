@@ -28,6 +28,11 @@
         <li <?php echo (basename($_SERVER['PHP_SELF']) == 'student_list.php') ? 'class="active"' : ''; ?>><a href="student_list.php" data-target="#doctor-timings">Doctor Timings</a></li>
         <li <?php echo (basename($_SERVER['PHP_SELF']) == 'student_profile.php') ? 'class="active"' : ''; ?>><a href="student_profile.php" data-target="#book-appointment">Book Appointment</a></li>
       </ul>
+
+      <!-- Add a logout button -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logout.php">Logout</a></li>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

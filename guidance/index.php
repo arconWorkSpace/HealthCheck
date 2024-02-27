@@ -91,14 +91,13 @@
             <p class="hero-subtitle has-before" data-reveal="left">Welcome To Mind Matters</p>
 
             <h1 class="headline-lg hero-title" data-reveal="left">
-              Find Nearest <br>
-              Doctor.
+            We are here to help you feel better
             </h1>
 
           </div>
 
           <figure class="hero-banner" data-reveal="right">
-            <img src="./assets/images/hero-banner.png" width="590" height="517" loading="eager" alt="hero banner"
+            <img src="./new image/total-shape-Ianw4RdVuoo-unsplash.jpg" width="590" height="517" loading="eager" alt="hero banner"
               class="w-100">
           </figure>
 

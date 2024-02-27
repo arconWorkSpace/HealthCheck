@@ -34,10 +34,23 @@ session_start();
 include 'admin_sidebar.php';
 
 ?>
+
+
 </head>
+<style>
+    body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('./new image/doctor.jpg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+</style>
 <body>
 
-
+<h1>Counselor Dashboard</h1>
 
 </body>
 </html>

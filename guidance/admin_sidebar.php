@@ -1,4 +1,3 @@
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,19 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <title>Your Website</title>
 </head>
+<style>
+     .logout-button {
+        display: inline-block;
+        padding: 10px 20px; /* Adjust padding as needed */
+       /* Button background color */
+        color: white; /* Text color */
+        text-decoration: none; /* Remove underline */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Add border radius for rounded corners */
+        cursor: pointer; /* Change cursor on hover */
+        transition: background-color 0.3s; /* Smooth transition for background color change */
+    }
+</style>
 <body>
 
 <nav class="navbar navbar-default">
@@ -25,17 +37,25 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="adminhome.php">Home</a></li>
-        <li><a href="weekly_availability.php">Add weekly availability</a></li>
-        <!-- <li><a href="view_bookings.php">View bookings</a></li> -->
-        <li><a href="view_bookings.php">View bookings</li>
+       
+       
+        <li><a href="adminhome.php" data-target="#home">Home</a></li>
+        <li><a href="weekly_availability.php" data-target="#doctor-timings">Doctor Timings</a></li>
+        <li><a href="view_bookings.php" data-target="#book-appointment">Book Appointment</a></li>
+      </ul>
+
+      <!-- Add a logout button -->
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="logout.php" class="logout-button">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<!-- Your page content goes here -->
 
+<!-- Your page content goes here -->
+ 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </body>
 </html>

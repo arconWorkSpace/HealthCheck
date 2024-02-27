@@ -1,3 +1,4 @@
+<?php include "admin_sidebar.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <style type="text/css">
         body {
             font-family: 'Arial', sans-serif;
-            background-color:  ;
+            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
         }
@@ -67,7 +68,12 @@
         }
 
         input[type="time"]:hover {
+            color : black;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        input[type="time"] {
+            color : black;
+             
         }
 
         input[type="submit"] {
@@ -84,8 +90,8 @@
         input[type="submit"]:hover {
             background-color: #27ae60;
         }
-		
-		.form-submit {
+        
+        .form-submit {
             text-align: center;
         }
     </style>
@@ -134,3 +140,4 @@
 
 </body>
 </html>
+

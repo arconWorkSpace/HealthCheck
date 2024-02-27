@@ -75,53 +75,61 @@ include 'student_sidebar.php';
 
     <style type="text/css">
         body {
-      background-color: #f8f9fa;
+        background-color: #f8f9fa;
+    }
+
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Adjust as needed */
     }
 
     .div_deg {
-      max-width: 400px;
-      margin: 50px auto;
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     label {
-      font-weight: bold;
-      margin-bottom: 5px;
+        font-weight: bold;
+        margin-bottom: 5px;
     }
 
-    select, input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border: 1px solid #ced4da;
-      border-radius: 4px;
-      box-sizing: border-box;
+    select,
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        box-sizing: border-box;
     }
 
     input[type="submit"] {
-      background-color: #28a745;
-      color: #fff;
-      cursor: pointer;
+        background-color: #28a745;
+        color: #fff;
+        cursor: pointer;
     }
 
     /* Simple animation */
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
     }
 
     /* Apply the animation to the form */
     .div_deg {
-      animation: fadeIn 1s ease-in-out;
-     padding-bottom: 70px;
-}
+        animation: fadeIn 1s ease-in-out;
+        padding-bottom: 70px;
+    }
     </style>
 </head>
 
@@ -147,6 +155,27 @@ include 'student_sidebar.php';
                     <input type="text" name="email" value="<?php echo $info['email']; ?>" readonly class="form-control">
                 </div>
 
+                <div class="dropdown-container">
+    <label for="standard">Select Standard:</label>
+    <select id="standard" name="standard">
+    <option value="-1" selected> </option>
+      <option value="6"> 6</option>
+      <option value="7"> 7</option>
+      <option value="8"> 8</option>
+      <option value="9"> 9</option>
+      <option value="10"> 10</option>
+      <option value="11"> 11</option>
+      <option value="12"> 12</option>
+    </select>
+    <label for="division">Select Division:</label>
+    <select id="division" name="division">
+        <option value="-1" selected> </option>
+      <option value="A"> A</option>
+      <option value="B"> B</option>
+      <option value="C"> C</option>
+    </select>
+  </div>
+ 
                 <div>
                     <label>Counselor</label>
                     <select name="counselor" class="form-control">
@@ -189,7 +218,7 @@ include 'student_sidebar.php';
 
 
                 <div>
-                    <input type="submit" class="btn btn-success" name="update_profile" value="Update Profile">
+                    <input type="submit" class="btn btn-success" name="update_profile" value="Submit">
                 </div>
             </form>
         </center>

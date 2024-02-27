@@ -1,5 +1,13 @@
 
 <?php
+
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header("location: login.php");
+    exit();
+}
+
     $host = "localhost";
     $user = "root";
     $password = "";
@@ -11,17 +19,19 @@
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_profile"])) {
         // Retrieve form data
+        $Name = $_SESSION["username"];
         $email = $_POST["email"];
         $counselor = $_POST["counselor"];
-        $week = $_POST["week"];
-        $week = ucfirst($_POST["week"]);
-        
-
-        $checkup_for = $_POST["checkup"]; // Make sure to add 'name' attribute to your checkup input field
+        $day = ucfirst($_POST["week"]);
+        $standard = $_POST["standard"];
+        $division = $_POST["division"];
+        if($standard!=-1 && $division!="-1"){
+            $class = $standard . $division;
+            $checkup_for = $_POST["checkup"]; // Make sure to add 'name' attribute to your checkup input field
         $timing_query = "SELECT * FROM availability WHERE Name = '$counselor'";
         $timing_result = mysqli_query($data, $timing_query);
-        $weekWithTimeIn = $week . "_timeIn";
-        $weekWithTimeIOut = $week . "_timeOut";
+        $weekWithTimeIn = $day . "_timeIn";
+        $weekWithTimeIOut = $day . "_timeOut";
 
         if ($timing_result) {
             // Check if any rows were returned
@@ -29,12 +39,12 @@
                 $row = mysqli_fetch_assoc($timing_result);
                 $timing1 = $row[$weekWithTimeIn];
                 $timing2 = $row[$weekWithTimeIOut];
-                $timing = $timing1 ."-". $timing2;
-                // Insert data into the database
-                $insertQuery = "INSERT INTO appointment_details (email, counselor, week, timing, checkup_for) VALUES ('$email', '$counselor', '$week', '$timing', '$checkup_for')";
+                $timing = $timing1 ." - ". $timing2;
+                // Insert data into the databases
+                $insertQuery = "INSERT INTO appointment_details (name,email, counselor, day,class, timing, checkup_for) VALUES ('$Name','$email', '$counselor', '$day','$class', '$timing', '$checkup_for')";
     
                 if (mysqli_query($data, $insertQuery)) {
-                    echo "Data inserted successfully!";
+                    header("Location: success.html");
                 } else {
                     echo "Error: " . mysqli_error($data);
                 }
@@ -44,6 +54,11 @@
         } else {
             echo "Error: " . mysqli_error($data);
         }
+        }
+        else{
+            header("Location: faliure.html");
+        }
+        
     }
     
 ?>

@@ -112,9 +112,10 @@
         </div>
         <div>
             <label>Login As</label>
-            <select name=" " id="logintype">
-                <option value="Doctor">Doctor</option>
+            <select name="logintype" id="logintype">
+                <option value="Counsellor">Counsellor</option>
                 <option value="Student">Student</option>
+                <option value="Admin">Admin</option>
             </select>
         </div>
         <div>

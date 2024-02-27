@@ -39,7 +39,7 @@ session_start();
 <head>
 	<meta charset="utf-8">
 	
-	<title>Admin Dashboard</title>
+	<title>Active Booking</title>
 
  
 	
@@ -99,7 +99,7 @@ session_start();
 
 		<center>
 		
-		<h1>My bookings</h1>
+		<h1>Active bookings</h1>
 		<?php
 
 			 	if($_SESSION['message'])
@@ -115,8 +115,10 @@ session_start();
 		<table border="1px">
 			<tr>
                 <th>Index</th>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Day</th>
+                <th>Class</th>
                 <th>Timing</th>
                 <th>Checkup</th>
             </tr>
@@ -131,11 +133,17 @@ session_start();
 				<td class="table_td">
 					<?php echo $index ?>
 				</td>
+                <td class="table_td">
+					<?php echo "{$info['name']}"; ?>
+				</td>
 				<td class="table_td">
 					<?php echo "{$info['email']}"; ?>
 				</td>
                 <td class="table_td">
-					<?php echo "{$info['week']}"; ?>
+					<?php echo "{$info['day']}"; ?>
+				</td>
+                <td class="table_td">
+					<?php echo "{$info['class']}"; ?>
 				</td>
 				<td class="table_td">
 					<?php echo "{$info['timing']}"; ?>
@@ -148,7 +156,6 @@ session_start();
 			<?php 
 
 		}
-
 			?>
 		</table>
 

@@ -6,6 +6,22 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <title>Your Website</title>
 </head>
+<style>
+   .logout-button {
+        display: inline-block;
+        padding: 10px 20px; /* Adjust padding as needed */
+       /* Button background color */
+        color: white; /* Text color */
+        text-decoration: none; /* Remove underline */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Add border radius for rounded corners */
+        cursor: pointer; /* Change cursor on hover */
+        transition: background-color 0.3s; /* Smooth transition for background color change */
+    }
+
+    /* Hover effect for button */
+    
+</style>
 <body>
 
 <nav class="navbar navbar-default">
@@ -27,11 +43,12 @@
         <li <?php echo (basename($_SERVER['PHP_SELF']) == 'studenthome.php') ? 'class="active"' : ''; ?>><a href="studenthome.php" data-target="#home">Home</a></li>
         <li <?php echo (basename($_SERVER['PHP_SELF']) == 'student_list.php') ? 'class="active"' : ''; ?>><a href="student_list.php" data-target="#doctor-timings">Doctor Timings</a></li>
         <li <?php echo (basename($_SERVER['PHP_SELF']) == 'student_profile.php') ? 'class="active"' : ''; ?>><a href="student_profile.php" data-target="#book-appointment">Book Appointment</a></li>
+        <li <?php echo (basename($_SERVER['PHP_SELF']) == 'Information.php') ? 'class="active"' : ''; ?>><a target="_blank" href="Information.php" data-target="#book-appointment">Information</a></li>
       </ul>
 
       <!-- Add a logout button -->
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="logout.php">Logout</a></li>
+        <li><a href="logout.php" class="logout-button">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

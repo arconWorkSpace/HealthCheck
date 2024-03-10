@@ -28,7 +28,7 @@ if($data===false)
 		$pass = $_POST['password'];
 		$usertype = $_POST['logintype'];
 
-  	
+  	echo $name;
 	$sql = "SELECT * FROM user WHERE username='$name' AND password='$pass' AND usertype='$usertype'";
 
   	$result=mysqli_query($data,$sql);
@@ -39,16 +39,16 @@ if($data===false)
   	if($row["usertype"]=="Student")
   	{
 
-  		$_SESSION['username']=$name;
+  		$_SESSION['studentname']=$name;
 
-  		$_SESSION['usertype']="student";
+  		$_SESSION['usertype']="Student";
 
   		header("location:studenthome.php");
   	}
 
   	elseif($row["usertype"]=="Counsellor")
   	{
-  		$_SESSION['username']=$name;
+  		$_SESSION['counsellorname']=$name;
 
   		$_SESSION['usertype']="Counsellor";
 
@@ -56,11 +56,11 @@ if($data===false)
   	}
 	  elseif($row["usertype"]=="Admin")
   	{
-  		$_SESSION['username']=$name;
+  		$_SESSION['adminname']=$name;
 
   		$_SESSION['usertype']="Admin";
 
-  		header("location:counsellor.php");
+  		header("location:adminhomepage.php");
   	}
 
   	else
@@ -68,7 +68,7 @@ if($data===false)
   		
 
 
-  		$message= "username or password do not match";
+  		$message= "Incorrect Username or Password";
 
   		$_SESSION['loginMessage']=$message;
 

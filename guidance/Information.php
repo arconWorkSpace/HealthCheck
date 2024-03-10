@@ -14,105 +14,103 @@
             animation: fadeIn 0.5s ease-in-out; /* Adding fade-in animation */
         }
 
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff; /* Blue color */
+        }
+
         .container {
             margin-top: 50px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            border: 1px solid #ddd; /* Add a border to the card */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+        }
+
+        .card-header {
+            background-color: #f8f9fa; /* Light gray background color for header */
+        }
+
+        .btn-link {
+            color: #007bff; /* Blue color for the collapsible button text */
+        }
+
+        .btn-link:hover {
+            text-decoration: none;
+        }
+
+        .card-body {
+            background-color: #fff; /* White background color for card body */
+            padding: 15px;
+        }
+
+        ul {
+            list-style-type: none; /* Remove list bullets */
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <h1 style="text-align: center; margin-top: 20px;">Mental Health Information</h1>
+    <h1>Mental Health Information</h1>
     <div class="container">
         <div id="accordion">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Anxiety
-                        </button>
-                    </h5>
-                </div>
+            <?php
+            // Database connection
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "guidance";
 
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                    <div class="card-body">
-                        <ul>
-                            <li>Experiencing occasional anxiety is a normal part of life.</li>
-                            <li>If your feelings of anxiety are extreme, last for at least 6 months, and are interfering with your life, you may have an anxiety disorder.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
-            <div class="card">
-                <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Depression
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                    <div class="card-body">
-                        <ul>
-                            <li>To be diagnosed with depression, the symptoms must be present for at least two weeks.</li>
-                            <li>Depression may require long-term treatment.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
-            <div class="card">
-                <div class="card-header" id="headingThree">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Bullying
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                    <div class="card-body">
-                        <ul>
-                            <li>Bullying is a form of aggressive behavior in which someone intentionally and repeatedly causes another person injury or discomfort.</li>
-                            <li>It can involve an individual or a group misusing their power, or perceived power, over one or more persons who feel unable to stop it from happening.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            // SQL query
+            $sql = "SELECT * FROM resource";
+            $result = $conn->query($sql);
 
-            <div class="card">
-                <div class="card-header" id="headingFour">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            Stress
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                    <div class="card-body">
-                        <ul>
-                            <li>The way you respond to stress makes a big difference to your overall well-being.</li>
-                            <li>One should seek medical attention if there is a feeling of being overwhelmed or if there are thoughts about hurting oneself.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header" id="headingFive">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            Cyber Bullying
-                        </button>
-                    </h5>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                    <div class="card-body">
-                        <ul>
-                            <li>Cyberbullying is bullying that takes place over digital devices like cell phones, computers, and tablets.</li>
-                            <li>Cyberbullying includes sending, posting, or sharing negative, harmful, false, or mean content about someone else.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            if ($result->num_rows > 0) {
+                // Output data of each row
+                while($row = $result->fetch_assoc()) {
+                    echo '<div class="card">';
+                    echo '<div class="card-header">';
+                    echo '<h5 class="mb-0">';
+                    echo '<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse' . $row["id"] . '" aria-expanded="false" aria-controls="collapse' . $row["id"] . '">';
+                    echo $row["Title"];
+                    echo '</button>';
+                    echo '</h5>';
+                    echo '</div>';
+                    echo '<div id="collapse' . $row["id"] . '" class="collapse" aria-labelledby="heading' . $row["id"] . '" data-parent="#accordion">';
+                    echo '<div class="card-body">';
+                    echo '<ul>';
+                    echo '<li>' . $row["Description"] . '</li>';
+                    echo '</ul>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    
+                }
+            } else {
+                echo '<h1>No Information</h1>';
+            }
+            $conn->close();
+            ?>
         </div>
     </div>
 

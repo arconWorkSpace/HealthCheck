@@ -2,7 +2,7 @@
 error_reporting(0);
 session_start();
 
-  if (!isset($_SESSION['username']))
+  if (!isset($_SESSION['studentname']))
    {
   	header("location:login.php");
     exit();
@@ -75,7 +75,7 @@ session_start();
 
 		<center>
 		
-		<h1>Counselor Available Time</h1>
+		<h1>Counsellor Available Time</h1>
 		<?php
 
 			 	if($_SESSION['message'])
@@ -118,8 +118,8 @@ session_start();
     while($info = $result->fetch_assoc()) {
     ?>
         <tr>
-            <td class="table_td"><?php echo "{$info['Name']}"; ?></td>
-            <td class="table_td"><?php echo "{$info['Email']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['name']}"; ?></td>
+            <td class="table_td"><?php echo "{$info['email']}"; ?></td>
             
             <td class="table_td"><?php echo "{$info['Monday_timeIn']}"; ?></td>
             <td class="table_td"><?php echo "{$info['Monday_timeOut']}"; ?></td>

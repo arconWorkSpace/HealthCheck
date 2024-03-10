@@ -1,74 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Depression Counseling Services</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            margin-top: 50px;
-        }
-        .jumbotron {
-            background-color: #007bff;
-            color: #fff;
-            padding: 100px 20px;
-            text-align: center;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        .btn {
-            background-color: #007bff;
-            border-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            font-size: 18px;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-        .icon-img {
-            width: 100%;
-            height: auto;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
-</head>
-<body>
+<form action="process_availability.php" method="POST">
+    <label for="hour">Hour:</label>
+    <input type="number" id="hour" name="hour" min="1" max="12" required>
+    
+    <label for="ampm">AM/PM:</label>
+    <select id="ampm" name="ampm" required>
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+    </select>
 
-    <div class="jumbotron">
-        <h1 class="display-4">You're Not Alone</h1>
-        <p class="lead">We're here to help you overcome depression and find your way to a healthier life.</p>
-        <hr class="my-4">
-        <p>If you're struggling with depression, seeking help is the first step towards healing. Reach out to our experienced counselors today.</p>
-        <a class="btn btn-lg" href="#about" role="button">Learn More</a>
-    </div>
-
-    <div class="container" id="about">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="https://source.unsplash.com/featured/?mentalhealth" alt="Mental Health" class="img-fluid icon-img">
-            </div>
-            <div class="col-md-6">
-                <h2>About Our Services</h2>
-                <p>We provide professional counseling services specifically tailored for students who are facing mental health challenges, including depression.</p>
-                <p>Our team of experienced counselors are dedicated to helping you overcome obstacles, build resilience, and lead a fulfilling life.</p>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <input type="submit" value="Submit">
+</form>

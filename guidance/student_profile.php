@@ -1,7 +1,7 @@
 <!-- <?php
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['studentname'])) {
     header("location: login.php");
     exit();
 }
@@ -13,7 +13,7 @@ $db = "guidance";
 
 $data = mysqli_connect($host, $user, $password, $db);
 
-$name = $_SESSION['username'];
+$name = $_SESSION['studentname'];
 
 $sql = "SELECT * FROM user WHERE username=?";
  
@@ -177,14 +177,14 @@ include 'student_sidebar.php';
   </div>
  
                 <div>
-                    <label>Counselor</label>
+                    <label>Counsellor</label>
                     <select name="counselor" class="form-control">
                     <?php
                     // Fetch and display the list of admin users
                     $adminUsersQuery = "SELECT * FROM availability ";
                     $adminUsersResult = mysqli_query($data, $adminUsersQuery);
                     while ($adminUser = mysqli_fetch_assoc($adminUsersResult)) {
-                        echo "<option value='" . $adminUser['Name'] . "'>" . $adminUser['Name'] . "</option>";
+                        echo "<option value='" . $adminUser['name'] . "'>" . $adminUser['name'] . "</option>";
                     }
                     ?>
                     </select>
@@ -206,12 +206,17 @@ include 'student_sidebar.php';
                 
 
                 <div>
-    <label for="checkup">CheckUp For:</label>
+    <label for="checkup">Counselling Intervention</label>
     <select name="checkup" class="form-control">
-        <option value="headache">Headache</option>
-        <option value="depression">Depression</option>
-        <option value="anxiety">Anxiety</option>
-        <option value="stress">Stress</option>
+        <option value="Addiction">Addiction</option>
+        <option value="Depression">Depression</option>
+        <option value="Anxiety">Anxiety</option>
+        <option value="Stress">Stress</option>
+        <option value="Relationship">Relationship</option>
+        <option value="Grief">Grief</option>
+        <option value="Anger">Anger</option>
+        <option value="Others">Others</option>
+        
         <!-- Add more options as needed -->
     </select>
 </div>

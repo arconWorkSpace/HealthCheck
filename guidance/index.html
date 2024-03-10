@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>All'z Well Home</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/05a8381518.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section class="color-section" id="title">
+        <div class="container">
+            <div class="row align-items-center"> <!-- Added align-items-center -->
+                <div class="col-lg-6">
+                    <h1 class="big-heading" style="font-style: italic;">Welcome To All'z Well</h1>
+                    <p class="medium-heading">We are here to help you feel better</p>
+                    <button class="btn btn-primary btn-lg download-btn" onclick="redirectToLoginPage()"
+                        type="button"><i class="fas fa-play"></i> Book Appointment Now</button>
+                </div>
+                <div class="col-lg-6">
+                    <div class="image-frame">
+                        <img class="title-img" src="images/img6.jpeg" alt="Man with multiple screens">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section class="white-section" id="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="image-frame">
+                        <img class="gallery-img" src="images/img1.jpeg" alt="Image 1">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="image-frame">
+                        <img class="gallery-img" src="images/img4.jpeg" alt="Image 3">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="image-frame">
+                        <img class="gallery-img" src="images/img3.jpeg" alt="Image 4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="white-section" id="footer">
+        <div class="container">
+            <p>All'z Well. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+    <script>
+        function redirectToLoginPage() {
+            window.location.href = "login.php";
+        }
+    </script>
+</body>
+
+</html>

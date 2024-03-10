@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #3498db, #2980b9); /* Updated background color to bluish gradient */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Updated box-shadow for subtle shades */
+            animation: fadeIn 0.8s ease-out; /* Modified animation name and duration */
+        }
+
+        h1 {
+            text-align: center;
+            color: #333; /* Changed heading color */
+        }
+
+        label {
+            font-weight: bold;
+            color: #555; /* Changed label color */
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745; /* Changed submit button color to green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838; /* Changed hover color */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="message" style="display: none; text-align: center; color: green; margin-bottom: 10px;">
+        Form successfully filled!
+    </div>
+
+    <form id="myForm" action="resource.php" method="post">
+        <h1>Add Information</h1>
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="5" cols="50"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+<!-- ... Previous script content ... -->
+<script>
+    // Function to clear form fields after submission
+    function clearForm() {
+
+        var title = document.getElementById("title");
+        var desc = document.getElementById("content");
+
+        if(title.value!="" && desc.value!=""){
+            Swal.fire({
+            icon: 'success',
+            title: 'Form successfully filled!',
+            showConfirmButton: false,
+            timer: 2000 // Automatically close after 2 seconds
+        });
+
+        setTimeout(() => {
+            title.value = "";
+            desc.value = "";
+        }, 3000);
+        // Clear form fields
+        }
+        else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Fields cannot be empty!',
+                text: 'Please fill in all the required fields.',
+            });
+        }
+        // Show success message using SweetAlert2
+        
+
+       
+
+        
+        
+    }
+
+    // Call clearForm() after submission
+    document.getElementById("myForm").addEventListener("submit", clearForm);
+</script>
+<!-- ... Remaining HTML content ... -->
+
+</html>

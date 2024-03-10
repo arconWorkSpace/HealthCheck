@@ -4,7 +4,7 @@ include 'admin_sidebar.php';
 error_reporting(0);
 session_start();
 
-  if (!isset($_SESSION['username']))
+  if (!isset($_SESSION['counsellorname']))
    {
   	header("location:login.php");
   }
@@ -16,7 +16,7 @@ session_start();
   	header("location:login.php");
   	
   }
-  $NAME = $_SESSION['username'];
+  $NAME = $_SESSION['counsellorname'];
   $host="localhost";
   $user="root";
   $password="";
@@ -45,9 +45,7 @@ session_start();
 	
 </head>
 
-<script>
-    document.querySelector("body > a").style.pointerEvents = "none";
-</script>
+
 <style>
       body {
             font-family: Arial, sans-serif;
@@ -57,7 +55,7 @@ session_start();
         }
 
         .content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 50px auto;
             background-color: #fff;
             padding: 20px;
@@ -94,6 +92,28 @@ session_start();
             background-color: #e0f7fa;
         }
     </style>
+    <script>
+    function handleButtonClick(id) {
+    console.log(id);
+    $.ajax({
+        url: 'delete_row.php',
+        type: 'POST',
+        data: { id: id },
+        success: function(response) {
+            console.log("Helloss" ,response); // Log the response from the server
+            if (response === 'success') {
+              location.reload();
+            } else {
+                console.error('Error deleting row');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
+</script>
 <body>
 	<div class="content">
 
@@ -113,51 +133,37 @@ session_start();
 		<br><br>
 		 
 		<table border="1px">
-			<tr>
-                <th>Index</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Day</th>
-                <th>Class</th>
-                <th>Timing</th>
-                <th>Checkup</th>
-            </tr>
-			<?php
-			$index = 0;
-			
-			while($info=$result->fetch_assoc())
-			{
-				$index++;
-			?>
-			<tr>
-				<td class="table_td">
-					<?php echo $index ?>
-				</td>
-                <td class="table_td">
-					<?php echo "{$info['name']}"; ?>
-				</td>
-				<td class="table_td">
-					<?php echo "{$info['email']}"; ?>
-				</td>
-                <td class="table_td">
-					<?php echo "{$info['day']}"; ?>
-				</td>
-                <td class="table_td">
-					<?php echo "{$info['class']}"; ?>
-				</td>
-				<td class="table_td">
-					<?php echo "{$info['timing']}"; ?>
-				</td>
-				<td class="table_td">
-					<?php echo "{$info['checkup_for']}"; ?>
-				</td>		
-			</tr>
-			
-			<?php 
+    <tr>
+        <th>Index</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Day</th>
+        <th>Class</th>
+        <th>Timing</th>
+        <th>Intervention For</th>
+        <th>Action</th> <!-- New column for the button -->
+    </tr>
+    <?php
+    $index = 0;
 
-		}
-			?>
-		</table>
+    while($info = $result->fetch_assoc()) {
+        $index++;
+    ?>
+    <tr>
+        <td id="row_<?php echo $index ?>" class="table_td"><?php echo $index ?></td>
+        <td class="table_td"><?php echo "{$info['name']}"; ?></td>
+        <td class="table_td"><?php echo "{$info['email']}"; ?></td>
+        <td class="table_td"><?php echo "{$info['day']}"; ?></td>
+        <td class="table_td"><?php echo "{$info['class']}"; ?></td>
+        <td class="table_td"><?php echo "{$info['timing']}"; ?></td>
+        <td class="table_td"><?php echo "{$info['checkup_for']}"; ?></td>
+        <td class="table_td"><button class="btn btn-success" onclick="handleButtonClick('<?php echo $info['id']; ?>')">Completed</button></td> <!-- Button in each row -->
+    </tr>
+    <?php 
+    }
+    ?>
+</table>
+
 
 </center>
 		

@@ -3,7 +3,7 @@
 
 session_start();
 
-if (!isset($_SESSION['username'])) {
+if (!isset($_SESSION['studentname'])) {
     header("location: login.php");
     exit();
 }
@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])) {
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_profile"])) {
         // Retrieve form data
-        $Name = $_SESSION["username"];
+        $Name = $_SESSION["studentname"];
         $email = $_POST["email"];
         $counselor = $_POST["counselor"];
         $day = ucfirst($_POST["week"]);

@@ -5,7 +5,7 @@ $user = "root";
 $password = "";
 $db = "guidance";
 session_start();
-$Name = $_SESSION["username"];
+$Name = $_SESSION["counsellorname"];
  
 $data = mysqli_connect($host, $user, $password, $db);
 
@@ -55,7 +55,7 @@ if ($success ) {
     if (mysqli_num_rows($checkResult) > 0) {
         // If the name exists, perform an UPDATE query
         $updateQuery = "UPDATE availability SET
-                        Email = '$Email', 
+                        email = '$Email', 
                         Monday_timeIn = '$mondayTimeIn', 
                         Monday_timeOut = '$mondayTimeOut', 
                         Tuesday_timeIn = '$tuesdayTimeIn', 
@@ -69,17 +69,17 @@ if ($success ) {
                         WHERE Name = '$Name'";
         
         if (mysqli_query($data, $updateQuery)) {
-            echo "Data updated successfully!";
+            header("location: timing.html");
         } else {
             echo "Error updating record: " . mysqli_error($data);
         }
     } else {
         // If the name doesn't exist, perform an INSERT query
-        $sql = "INSERT INTO availability (Name, Email, Monday_timeIn, Monday_timeOut, Tuesday_timeIn, Tuesday_timeOut, Wednesday_timeIn, Wednesday_timeOut, Thursday_timeIn, Thursday_timeOut, Friday_timeIn, Friday_timeOut)
+        $sql = "INSERT INTO availability (name, email, Monday_timeIn, Monday_timeOut, Tuesday_timeIn, Tuesday_timeOut, Wednesday_timeIn, Wednesday_timeOut, Thursday_timeIn, Thursday_timeOut, Friday_timeIn, Friday_timeOut)
                 VALUES ('$Name', '$Email', '$mondayTimeIn', '$mondayTimeOut', '$tuesdayTimeIn', '$tuesdayTimeOut', '$wednesdayTimeIn', '$wednesdayTimeOut', '$thursdayTimeIn', '$thursdayTimeOut', '$fridayTimeIn', '$fridayTimeOut')";
 
         if (mysqli_query($data, $sql)) {
-            echo "New record inserted successfully!";
+            header("location: timing.html");
         } else {
             echo "Error: " . mysqli_error($data);
         }
